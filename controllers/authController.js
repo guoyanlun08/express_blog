@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken')
 
 // 注册
 async function register(req, res) {
@@ -37,8 +38,8 @@ async function login(req, res) {
     }
 
     user.lastOnlineTime = new Date();
-    await User.save();
-
+    await user.save();
+    
     const token = jwt.sign({ userId: user.id }, "xxx-your-secret-key", {
       expiresIn: "24h",
     });

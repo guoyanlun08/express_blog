@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
-app.use("/tempFiles", express.static(path.json(__dirname, "tempFiles")));
+app.use("/tempFiles", express.static(path.join(__dirname, "tempFiles")));
 
 app.use("/auth", authRoutes);
 app.use("/blog", blogRoutes);
