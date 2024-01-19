@@ -7,6 +7,7 @@ const blogRoutes = require("./routes/blogs");
 const tagRoutes = require("./routes/tags");
 const fileRoutes = require("./routes/file");
 const sequelize = require("./config/database");
+const authMiddleware = require('./middleware/authMiddleware')
 
 const app = express();
 
@@ -16,6 +17,8 @@ app.use(cors());
 app.use("/tempFiles", express.static(path.join(__dirname, "tempFiles")));
 
 app.use("/auth", authRoutes);
+
+app.use(authMiddleware);
 app.use("/blog", blogRoutes);
 app.use("/tags", tagRoutes);
 app.use("/upload", fileRoutes);

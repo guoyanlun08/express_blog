@@ -51,6 +51,7 @@ async function login(req, res) {
       userId: user.id,
     });
   } catch (e) {
+    console.log(e);
     res.status(500).json({ msg: "Fail to log in" });
   }
 }
