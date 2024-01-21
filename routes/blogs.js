@@ -14,6 +14,9 @@ router.get('/query/:id', blogController.getBlogById);
 // 根据 id修改博客
 router.patch('/update/:id', blogController.updateBlog);
 
+// 根据标签id查找关联了该标签的博客
+router.get("/queryByTag/:tagId", blogController.queryByTag);
+
 // 根据 id删除博客
 router.delete('/delete/:id', blogController.deleteBlog);
 

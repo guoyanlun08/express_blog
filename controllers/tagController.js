@@ -5,7 +5,6 @@ async function createTag(req, res) {
     const { name } = req.body;
 
     const queryTag = await Tag.findOne({ where: { name } });
-    console.log(queryTag);
 
     if (queryTag) {
       if (!queryTag.isDeleted) {
@@ -24,7 +23,6 @@ async function createTag(req, res) {
     const newTag = await Tag.create({ name });
     res.json(newTag);
   } catch (e) {
-    console.log(e);
     res.status(500).json({ error: e.message });
   }
 }
