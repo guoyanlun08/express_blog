@@ -8,8 +8,10 @@ async function createBlog(req, res) {
 
     const existTags = await Tag.findAll({ where: { name: tags } });
 
-    if (existTags) {
-      return res.status(400).json({ msg: '标签已存在' });
+    console.log('existTags ===', existTags);
+
+    if (existTags.length === 0) {
+      return res.status(400).json({ msg: '标签不存在' });
     }
 
     const newBlog = await Blog.create({
@@ -194,7 +196,7 @@ async function deleteBlog(req, res) {
 
     await blog.save();
 
-    res.json({ msg: 'OK' })；
+    res.json({ msg: 'OK' });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -205,5 +207,6 @@ module.exports = {
   getBlogList,
   getBlogById,
   updateBlog,
-  deleteBlog
+  queryByTag,
+  deleteBlog,
 }
